@@ -1,5 +1,7 @@
 *
-!sys_ops.c
+!*.zig
+!build.zig
+!build.zig.zon
 !ultimate_shell.ts
 !quickjs.d.ts
 !sys_ops.d.ts
