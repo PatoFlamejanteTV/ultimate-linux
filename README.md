@@ -51,6 +51,14 @@ instead of your system's GCC to link against the freshly built `musl` instead of
 
 We're now ready to transpile the JavaScript code to C, link it together with some system operations and produce the final ULTIMATE SHELL!
 
+First, compile the TypeScript code to JavaScript:
+
+```
+tsc --target ES2020 --module ES2020 ultimate_shell.ts
+```
+
+Then compile the JavaScript to C and link it:
+
 ```
 ./quickjs-2025-09-13/qjsc -M sys_ops,js_init_module_sys_ops -e -o ultimate_shell.c ultimate_shell.js && /usr/local/musl/bin/musl-gcc -static -o ultimate_shell ultimate_shell.c sys_ops.c -I ./quickjs-2025-09-13 ./quickjs-2025-09-13/libquickjs.a -lm -ldl -lpthread
 ```
