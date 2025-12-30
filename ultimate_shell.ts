@@ -1,19 +1,22 @@
+/// <reference path="quickjs.d.ts" />
+/// <reference path="sys_ops.d.ts" />
+
 import * as std from "std";
 import * as os from "os";
 import { mount } from "sys_ops";
 
-function printHelp() {
+function printHelp(): void {
     std.printf("Commands: ls, cd, cat, mkdir, mount, exit\n");
 }
 
 // Native Cat: Works without /bin/cat
-function cat(path) {
+function cat(path: string): void {
     const f = std.open(path, "r");
     if (!f) {
         std.printf("cat: %s: No such file\n", path);
         return;
     }
-    let line;
+    let line: string | null;
     while ((line = f.getline()) !== null) {
         std.printf("%s\n", line);
     }
@@ -24,7 +27,8 @@ std.printf("--- ULTIMATE LINUX SHELL ---\n");
 printHelp();
 
 while (true) {
-    const cwd = os.getcwd()[0] || "/";
+    const cwd_res = os.getcwd();
+    const cwd = cwd_res[0] || "/";
     std.printf("[%s] # ", cwd);
     std.out.flush();
 
@@ -77,7 +81,7 @@ while (true) {
         else {
             std.printf("No idea what to do lol\n");
         }
-    } catch (e) {
+    } catch (e: any) {
         std.printf("Shell Error: %s\n", e.toString());
     }
 }
