@@ -59,9 +59,7 @@ tsc --target ES2020 --module ES2020 ultimate_shell.ts
 
 Then compile the JavaScript to C and link it:
 
-```
-./quickjs-2025-09-13/qjsc -M sys_ops,js_init_module_sys_ops -e -o ultimate_shell.c ultimate_shell.js && /usr/local/musl/bin/musl-gcc -static -o ultimate_shell ultimate_shell.c sys_ops.c -I ./quickjs-2025-09-13 ./quickjs-2025-09-13/libquickjs.a -lm -ldl -lpthread
-```
+(Build instructions are being updated for the new Zig & TS workflow)
 
 You can run `./ultimate_shell` on your build machine as well, it should be fully portable.
 
